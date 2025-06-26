@@ -39,17 +39,18 @@ class sharedptr{
         if(_ptr){
             share_count = other.share_count;
             other._ptr = nullptr;
+            // other.share_count = nullptr;ptr1的析构还要用到，不能置空
         }
     }
 
-    int usecount(){
+    int usecount() const{
             return share_count->sharednum.load();
     }
 
     ~sharedptr(){
         share_count->sharednum.fetch_sub(1);
-        if( share_count->sharednum==0){
-            delete share_count;
+        std::cout<<share_count->sharednum.load();
+        if(share_count->sharednum==0){
             delete _ptr;
         }
 }
@@ -61,7 +62,7 @@ class sharedptr{
     sharedptr& operator=(const sharedptr rhs){
         std::swap(rhs._ptr,this->_ptr);
         return *this;
-    }//注意rhs是值 swap and copy是最佳实践？
+    }//注意rhs是值 swap and copy是最佳实践
 
 };
 
@@ -70,7 +71,7 @@ int main(){
     sharedptr<int> ptr1(a); 
     sharedptr<int> ptr2(std::move(ptr1));
     sharedptr<int> ptr3 = ptr2;
-    std::cout<<*ptr2<<std::endl<<ptr2.usecount();
+    std::cout<<*ptr2<<std::endl;
     return 0;
 }
 

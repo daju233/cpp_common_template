@@ -9,5 +9,5 @@
 - [ ] memove(要求处理dst和src的复制内存会重复的情况)
 - [ ] memset	
 - [ ] 红黑树
-- [ ] 内存池
+- [ ] 内存池 https://www.cnblogs.com/blizzard8204/p/17804694.html
 - [ ] 条件变量和虚假唤醒

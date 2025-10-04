@@ -4,6 +4,7 @@
 - [x] shared_ptr
 - [ ] thread_pool
 - [ ] 多线程输出
+- [ ] kmp
 - [ ] 多消费者多生产者队列
 - [ ] memcpy
 - [ ] memove(要求处理dst和src的复制内存会重复的情况)
